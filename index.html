@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ============ PRIMARY SEO META (edit before publishing) ============ -->
+<title>Ajay Sah — Generative AI Engineer | Agentic AI &amp; Automation Systems</title>
+<meta name="description" content="Ajay Sah builds production-grade agentic AI systems — LangGraph multi-agent architectures, RAG pipelines, MCP servers, and automation tooling. GitHub, LinkedIn, and project links.">
+<meta name="keywords" content="Ajay Sah, Generative AI Engineer, Agentic AI Engineer, LangGraph, LangChain, RAG, Model Context Protocol, AI Automation Engineer, Python Developer">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Ajay Sah">
+<!-- TODO: replace with your real published URL once hosted (e.g. GitHub Pages) -->
+<link rel="canonical" href="https://ajaysah-ai.github.io/">
+
+<!-- ============ OPEN GRAPH (LinkedIn / Facebook link previews) ============ -->
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Ajay Sah — Generative AI Engineer | Agentic AI & Automation Systems">
+<meta property="og:description" content="Production-grade agentic AI systems — LangGraph, RAG, MCP, automation. Explore projects and profiles.">
+<meta property="og:url" content="https://ajaysah-ai.github.io/">
+<!-- TODO: add a real image (1200x630px) — a headshot or project screenshot works well -->
+<meta property="og:image" content="https://ajaysah-ai.github.io/preview.png">
+
+<!-- ============ TWITTER / X CARD ============ -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@ajaysah_ai">
+<meta name="twitter:title" content="Ajay Sah — Generative AI Engineer">
+<meta name="twitter:description" content="Building production-grade agentic AI systems — LangGraph, RAG, MCP, automation.">
+<meta name="twitter:image" content="https://ajaysah-ai.github.io/preview.png">
+
+<!-- ============ STRUCTURED DATA — this is what actually helps Google
+     associate all your profiles as ONE identity (Knowledge Graph signal) ============ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Ajay Sah",
+  "url": "https://ajaysah-ai.github.io/",
+  "jobTitle": "Generative AI Engineer",
+  "description": "Generative AI and Automation Engineer building production-grade agentic systems with LangGraph, RAG, and MCP.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Jamshedpur",
+    "addressRegion": "Jharkhand",
+    "addressCountry": "IN"
+  },
+  "sameAs": [
+    "https://www.linkedin.com/in/ajaysah-ai",
+    "https://github.com/ajaysah-ai",
+    "https://huggingface.co/ajaysah-ai",
+    "https://x.com/ajaysah_ai"
+  ],
+  "knowsAbout": ["LangGraph", "LangChain", "Retrieval-Augmented Generation", "Model Context Protocol", "Python", "FastAPI", "Agentic AI", "Automation"]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg: #0e1220;
+    --surface: #161b2e;
+    --surface-2: #1e2540;
+    --line: #2a3152;
+    --line-bright: #3d4670;
+    --text: #e7e9f2;
+    --muted: #8c93ac;
+    --accent: #e8a33d;
+    --accent-soft: rgba(232,163,61,0.14);
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'IBM Plex Sans', sans-serif;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  body{
+    background:
+      radial-gradient(circle at 50% 0%, #131a30 0%, var(--bg) 55%);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a{ color: inherit; }
+
+  .wrap{
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 64px 24px 48px;
+  }
+
+  .eyebrow{
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .eyebrow::before{
+    content:"";
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 4px var(--accent-soft);
+  }
+
+  h1{
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: clamp(28px, 5vw, 42px);
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+  }
+
+  .tagline{
+    font-size: 16px;
+    color: var(--muted);
+    max-width: 56ch;
+    margin-bottom: 8px;
+  }
+
+  .location{
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 48px;
+  }
+
+  /* ---------- identity graph ---------- */
+  .graph{
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 28px;
+    padding: 40px 0 56px;
+  }
+
+  svg.edges{
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    overflow: visible;
+  }
+  svg.edges line{
+    stroke: var(--line);
+    stroke-width: 1.5;
+  }
+  svg.edges circle.pulse{
+    fill: var(--accent);
+    filter: drop-shadow(0 0 4px var(--accent));
+  }
+
+  .node{
+    position: relative;
+    z-index: 2;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 14px 20px;
+    font-family: var(--mono);
+    font-size: 13px;
+    text-align: center;
+    transition: border-color .2s ease, transform .2s ease, background .2s ease;
+    text-decoration: none;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .node:hover{
+    border-color: var(--accent);
+    background: var(--surface-2);
+    transform: translateY(-2px);
+  }
+  .node .label{ color: var(--muted); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+  .node .handle{ color: var(--text); font-weight: 500; }
+
+  .node-center{
+    background: var(--surface-2);
+    border-color: var(--line-bright);
+    padding: 18px 28px;
+    font-size: 15px;
+  }
+  .node-center .handle{ color: var(--accent); }
+
+  .satellites{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+  }
+
+  /* ---------- sections ---------- */
+  section{ margin-top: 12px; }
+  .section-title{
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .projects{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-bottom: 52px;
+  }
+  @media (max-width: 680px){ .projects{ grid-template-columns: 1fr; } }
+
+  .card{
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .card h3{ font-size: 17px; font-weight: 600; }
+  .card p{ font-size: 14px; color: var(--muted); flex-grow: 1; }
+  .tags{ display:flex; flex-wrap:wrap; gap:6px; }
+  .tag{
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border-radius: 5px;
+    padding: 3px 8px;
+  }
+  .card a.repo-link{
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--text);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 4px;
+  }
+  .card a.repo-link:hover{ color: var(--accent); }
+
+  .skills{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 56px;
+  }
+  .chip{
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 5px 12px;
+  }
+
+  footer{
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    text-align: center;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    svg.edges circle.pulse{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="eyebrow">Available for Generative AI Engineer &amp; Automation roles</div>
+  <h1>Ajay Sah</h1>
+  <p class="tagline">Generative AI &amp; Automation Engineer — building production-grade agentic systems with LangGraph, RAG, and MCP.</p>
+  <div class="location">Jamshedpur, Jharkhand, India</div>
+
+  <!-- ============ IDENTITY GRAPH ============ -->
+  <div class="graph" id="graph">
+    <svg class="edges" id="edges"></svg>
+
+    <a href="#" class="node node-center" id="node-center" tabindex="-1" aria-hidden="true">
+      <span class="label">Identity</span>
+      <span class="handle">Ajay Sah</span>
+    </a>
+
+    <div class="satellites">
+      <a class="node satellite" data-edge href="https://www.linkedin.com/in/ajaysah-ai" target="_blank" rel="noopener">
+        <span class="label">LinkedIn</span>
+        <span class="handle">ajaysah-ai</span>
+      </a>
+      <a class="node satellite" data-edge href="https://github.com/ajaysah-ai" target="_blank" rel="noopener">
+        <span class="label">GitHub</span>
+        <span class="handle">ajaysah-ai</span>
+      </a>
+      <a class="node satellite" data-edge href="https://huggingface.co/ajaysah-ai" target="_blank" rel="noopener">
+        <span class="label">Hugging Face</span>
+        <span class="handle">ajaysah-ai</span>
+      </a>
+      <a class="node satellite" data-edge href="https://x.com/ajaysah_ai" target="_blank" rel="noopener">
+        <span class="label">X</span>
+        <span class="handle">ajaysah_ai</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- ============ PROJECTS ============ -->
+  <section>
+    <div class="section-title">Projects</div>
+    <div class="projects">
+      <div class="card">
+        <h3>GitHub Automation Agent</h3>
+        <p>A production-grade multi-graph LangGraph automation system with a custom MCP server, hybrid RAG retrieval (BM25 + TF-IDF), JWT authentication, encrypted credential storage, and per-user workspace isolation. Deployed on Hugging Face Spaces (Docker) and Vercel.</p>
+        <div class="tags">
+          <span class="tag">LangGraph</span>
+          <span class="tag">MCP</span>
+          <span class="tag">RAG</span>
+          <span class="tag">Docker</span>
+        </div>
+        <a class="repo-link" href="https://github.com/ajaysah-ai/GitHub_Autonomous_Agent" target="_blank" rel="noopener">View on GitHub ↗</a>
+      </div>
+
+      <div class="card">
+        <h3>AI-First CRM — HCP Log Interaction Screen</h3>
+        <p>Full-stack CRM module with a two-step approval-gated agent workflow. React + Redux Toolkit frontend, FastAPI backend, LangGraph orchestration with Groq LLMs, PostgreSQL, containerized via Docker Compose.</p>
+        <div class="tags">
+          <span class="tag">React</span>
+          <span class="tag">FastAPI</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">Docker</span>
+        </div>
+        <a class="repo-link" href="https://github.com/ajaysah-ai/AI-First-CRM-HCP" target="_blank" rel="noopener">View repository ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SKILLS ============ -->
+  <section>
+    <div class="section-title">Core Stack</div>
+    <div class="skills">
+      <span class="chip">Python</span>
+      <span class="chip">LangChain</span>
+      <span class="chip">LangGraph</span>
+      <span class="chip">RAG</span>
+      <span class="chip">Model Context Protocol</span>
+      <span class="chip">PyTorch</span>
+      <span class="chip">FastAPI</span>
+      <span class="chip">Docker</span>
+      <span class="chip">PostgreSQL</span>
+      <span class="chip">Playwright</span>
+      <span class="chip">React</span>
+    </div>
+  </section>
+
+  <footer>
+    Ajay Sah · Jamshedpur, India · Open to Generative AI Engineer &amp; AI Automation Engineer roles
+  </footer>
+
+</div>
+
+<script>
+  // Draws lines connecting the center node to each satellite, and animates
+  // a small pulse traveling along each edge — a nod to how data moves through
+  // an agentic graph.
+  (function(){
+    const graph = document.getElementById('graph');
+    const svg = document.getElementById('edges');
+    const center = document.getElementById('node-center');
+    const satellites = Array.from(document.querySelectorAll('.satellite'));
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function pointFor(el, containerRect){
+      const r = el.getBoundingClientRect();
+      return {
+        x: r.left + r.width / 2 - containerRect.left,
+        y: r.top + r.height / 2 - containerRect.top
+      };
+    }
+
+    function draw(){
+      const containerRect = graph.getBoundingClientRect();
+      svg.setAttribute('width', containerRect.width);
+      svg.setAttribute('height', containerRect.height);
+      svg.innerHTML = '';
+
+      const c = pointFor(center, containerRect);
+
+      satellites.forEach(function(sat, i){
+        const p = pointFor(sat, containerRect);
+
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', c.x); line.setAttribute('y1', c.y);
+        line.setAttribute('x2', p.x); line.setAttribute('y2', p.y);
+        svg.appendChild(line);
+
+        if (!reduceMotion){
+          const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+          dot.setAttribute('r', 3);
+          dot.setAttribute('class', 'pulse');
+          const animX = document.createElementNS('http://www.w3.org/2000/svg', 'animate');
+          animX.setAttribute('attributeName', 'cx');
+          animX.setAttribute('values', c.x + ';' + p.x + ';' + c.x);
+          animX.setAttribute('dur', (3 + i * 0.4) + 's');
+          animX.setAttribute('repeatCount', 'indefinite');
+          const animY = document.createElementNS('http://www.w3.org/2000/svg', 'animate');
+          animY.setAttribute('attributeName', 'cy');
+          animY.setAttribute('values', c.y + ';' + p.y + ';' + c.y);
+          animY.setAttribute('dur', (3 + i * 0.4) + 's');
+          animY.setAttribute('repeatCount', 'indefinite');
+          dot.appendChild(animX);
+          dot.appendChild(animY);
+          svg.appendChild(dot);
+        }
+      });
+    }
+
+    window.addEventListener('load', draw);
+    window.addEventListener('resize', function(){
+      clearTimeout(window.__edgeResizeTimer);
+      window.__edgeResizeTimer = setTimeout(draw, 120);
+    });
+  })();
+</script>
+
+</body>
+</html>
