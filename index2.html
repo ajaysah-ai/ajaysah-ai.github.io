@@ -1,0 +1,1773 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajay Sah — Generative AI Systems Engineer</title>
+    <meta name="description" content="Portfolio of Ajay Sah, Generative AI Systems Engineer specializing in Agentic AI, Multi-Agent Orchestration, LLM Infrastructure, and AI Automation.">
+    <meta name="author" content="Ajay Sah">
+    <meta name="keywords" content="Generative AI, Systems Engineer, Agentic AI, Multi-Agent, LLM Infrastructure, LangGraph, RAG, MCP, FastAPI">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ajaysah-ai.github.io/">
+    <meta property="og:title" content="Ajay Sah — Generative AI Systems Engineer">
+    <meta property="og:description" content="Designing production-grade intelligent systems using Agentic AI, Multi-Agent Orchestration, and LLM Infrastructure.">
+    <meta property="og:image" content="preview.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Ajay Sah — Generative AI Systems Engineer">
+    <meta property="twitter:description" content="Designing production-grade intelligent systems using Agentic AI, Multi-Agent Orchestration, and LLM Infrastructure.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Ajay Sah",
+            "jobTitle": "Generative AI Systems Engineer",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Jamshedpur",
+                "addressRegion": "Jharkhand",
+                "addressCountry": "India"
+            },
+            "knowsAbout": [
+                "Agentic AI",
+                "Multi-Agent Systems",
+                "LLM Infrastructure",
+                "Model Context Protocol",
+                "LangGraph",
+                "RAG"
+            ]
+        }
+    </script>
+
+    <style>
+        /* ==========================================================================
+       CSS VARIABLES & BASE STYLES
+       ========================================================================== */
+        
+         :root {
+            --bg: #0E1220;
+            --surface: #161B2E;
+            --card: #1E2540;
+            --accent: #E8A33D;
+            --accent-glow: rgba(232, 163, 61, 0.15);
+            --border: #2A3152;
+            --border-focus: #3D4875;
+            --text: #E7E9F2;
+            --muted: #8C93AC;
+            --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'IBM Plex Mono', monospace;
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 16px;
+            --radius-full: 9999px;
+            --shadow-subtle: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
+            --shadow-glow: 0 0 30px -5px rgba(232, 163, 61, 0.2);
+            --transition-fast: 0.15s ease;
+            --transition-base: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-sans);
+            font-size: 16px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        body {
+            overflow-x: hidden;
+            position: relative;
+        }
+        /* Ambient Background Pattern */
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: radial-gradient(circle at 50% 0%, rgba(232, 163, 61, 0.05) 0%, transparent 50%), radial-gradient(circle at 100% 100%, rgba(42, 49, 82, 0.2) 0%, transparent 40%);
+            pointer-events: none;
+            z-index: -1;
+        }
+        /* Typography Utilities */
+        
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            color: var(--text);
+            font-weight: 600;
+            line-height: 1.25;
+            letter-spacing: -0.02em;
+        }
+        
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+        
+        code,
+        pre {
+            font-family: var(--font-mono);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .section-padding {
+            padding: 7rem 0;
+        }
+        
+        .section-header {
+            margin-bottom: 3.5rem;
+        }
+        
+        .section-tag {
+            font-family: var(--font-mono);
+            font-size: 0.8125rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .section-tag::before {
+            content: '//';
+            color: var(--muted);
+        }
+        
+        .section-title {
+            font-size: 2.25rem;
+            letter-spacing: -0.03em;
+        }
+        /* ==========================================================================
+       BUTTONS & UI COMPONENTS
+       ========================================================================== */
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.625rem;
+            font-family: var(--font-sans);
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 0.75rem 1.375rem;
+            border-radius: var(--radius-sm);
+            transition: all var(--transition-base);
+            cursor: pointer;
+            border: 1px solid transparent;
+            white-space: nowrap;
+        }
+        
+        .btn-primary {
+            background: var(--accent);
+            color: #0E1220;
+            font-weight: 600;
+        }
+        
+        .btn-primary:hover {
+            background: #f0ae48;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(232, 163, 61, 0.3);
+        }
+        
+        .btn-secondary {
+            background: var(--surface);
+            color: var(--text);
+            border-color: var(--border);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--card);
+            border-color: var(--border-focus);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+        
+        .btn-sm {
+            padding: 0.5rem 0.875rem;
+            font-size: 0.8125rem;
+        }
+        
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            padding: 0.25rem 0.625rem;
+            border-radius: var(--radius-full);
+            background: rgba(42, 49, 82, 0.5);
+            border: 1px solid var(--border);
+            color: var(--muted);
+        }
+        /* ==========================================================================
+       NAVIGATION
+       ========================================================================== */
+        
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(14, 18, 32, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(42, 49, 82, 0.5);
+            transition: all var(--transition-base);
+        }
+        
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 4.5rem;
+        }
+        
+        .nav-logo {
+            font-family: var(--font-mono);
+            font-weight: 600;
+            font-size: 1.125rem;
+            letter-spacing: -0.03em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .nav-logo-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 10px var(--accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-link {
+            font-size: 0.875rem;
+            color: var(--muted);
+            font-weight: 400;
+            transition: color var(--transition-fast);
+        }
+        
+        .nav-link:hover {
+            color: var(--text);
+        }
+        /* ==========================================================================
+       HERO & IDENTITY GRAPH SECTION
+       ========================================================================== */
+        
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 6rem;
+            padding-bottom: 4rem;
+            position: relative;
+        }
+        
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .graph-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            height: 420px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .graph-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .graph-line {
+            stroke: var(--border);
+            stroke-width: 1.5;
+            stroke-dasharray: 6 6;
+            animation: dash 30s linear infinite;
+        }
+        
+        .graph-line-active {
+            stroke: var(--accent);
+            stroke-width: 1.5;
+            opacity: 0.4;
+        }
+        
+        @keyframes dash {
+            to {
+                stroke-dashoffset: -1000;
+            }
+        }
+        
+        .node {
+            position: absolute;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: transform var(--transition-base);
+        }
+        
+        .node:hover {
+            transform: scale(1.08);
+        }
+        
+        .node-center {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .node-center:hover {
+            transform: translate(-50%, -50%) scale(1.03);
+        }
+        
+        .avatar-wrapper {
+            position: relative;
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            padding: 4px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-subtle);
+        }
+        
+        .avatar-wrapper::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, transparent 0%, var(--accent) 50%, transparent 100%);
+            z-index: -1;
+            animation: rotate 8s linear infinite;
+            opacity: 0.6;
+        }
+        
+        @keyframes rotate {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            background: var(--card);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-mono);
+            font-weight: 600;
+            font-size: 1.75rem;
+            color: var(--accent);
+        }
+        
+        .node-satellite {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted);
+            box-shadow: var(--shadow-subtle);
+            transition: all var(--transition-base);
+        }
+        
+        .node-satellite:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            box-shadow: var(--shadow-glow);
+        }
+        
+        .node-satellite svg {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+        }
+        
+        .node-label {
+            margin-top: 0.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--muted);
+            background: var(--surface);
+            padding: 0.125rem 0.5rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+        }
+        /* Satellite Positioning */
+        
+        .node-li {
+            top: 12%;
+            left: 18%;
+        }
+        
+        .node-gh {
+            top: 12%;
+            right: 18%;
+        }
+        
+        .node-hf {
+            bottom: 12%;
+            left: 18%;
+        }
+        
+        .node-x {
+            bottom: 12%;
+            right: 18%;
+        }
+        
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            margin-bottom: 0.5rem;
+        }
+        
+        .hero-subtitle-tag {
+            font-family: var(--font-mono);
+            font-size: 1.125rem;
+            color: var(--accent);
+            margin-bottom: 1.25rem;
+            font-weight: 500;
+        }
+        
+        .hero-description {
+            font-size: 1.125rem;
+            color: var(--muted);
+            max-width: 680px;
+            margin: 0 auto 2rem auto;
+            font-weight: 400;
+        }
+        
+        .location-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.8125rem;
+            color: var(--muted);
+            background: var(--surface);
+            padding: 0.375rem 0.875rem;
+            border-radius: var(--radius-full);
+            border: 1px solid var(--border);
+            margin-bottom: 2.5rem;
+        }
+        
+        .location-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #34D399;
+            box-shadow: 0 0 8px #34D399;
+        }
+        
+        .hero-cta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        /* ==========================================================================
+       ABOUT & CURRENT FOCUS
+       ========================================================================== */
+        
+        .about-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 3rem;
+            box-shadow: var(--shadow-subtle);
+            margin-bottom: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent);
+        }
+        
+        .about-text {
+            font-size: 1.1875rem;
+            color: var(--text);
+            line-height: 1.7;
+        }
+        
+        .about-text p+p {
+            margin-top: 1.25rem;
+        }
+        
+        .focus-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.25rem;
+        }
+        
+        .focus-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all var(--transition-base);
+        }
+        
+        .focus-card:hover {
+            border-color: var(--border-focus);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-subtle);
+        }
+        
+        .focus-icon {
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+        
+        .focus-title {
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+        /* ==========================================================================
+       ARCHITECTURE SECTION (SVG DIAGRAM)
+       ========================================================================== */
+        
+        .architecture-wrapper {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 3rem 2rem;
+            overflow-x: auto;
+        }
+        
+        .arch-diagram {
+            width: 100%;
+            min-width: 900px;
+            height: auto;
+        }
+        /* ==========================================================================
+       FEATURED SYSTEMS
+       ========================================================================== */
+        
+        .systems-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        
+        .system-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            transition: all var(--transition-base);
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        
+        @media (min-width: 902px) {
+            .system-card {
+                grid-template-columns: 1.2fr 0.8fr;
+            }
+        }
+        
+        .system-card:hover {
+            border-color: var(--border-focus);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .system-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .system-desc {
+            color: var(--muted);
+            font-size: 0.9375rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .system-highlights {
+            margin-bottom: 1.75rem;
+        }
+        
+        .system-highlights-title {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        .system-highlights-list {
+            list-style: none;
+            font-size: 0.875rem;
+            color: var(--text);
+        }
+        
+        .system-highlights-list li {
+            position: relative;
+            padding-left: 1.25rem;
+            margin-bottom: 0.375rem;
+        }
+        
+        .system-highlights-list li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: var(--muted);
+            font-weight: 600;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .tech-pill {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 0.25rem 0.625rem;
+            border-radius: var(--radius-sm);
+        }
+        
+        .system-actions {
+            display: flex;
+            gap: 1rem;
+            align-self: end;
+        }
+        
+        .system-preview-box {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            font-family: var(--font-mono);
+            font-size: 0.8125rem;
+            color: var(--muted);
+        }
+        
+        .code-snippet {
+            color: #A6ACCD;
+            line-height: 1.5;
+        }
+        
+        .code-keyword {
+            color: #E5759D;
+        }
+        
+        .code-func {
+            color: #717CB4;
+        }
+        
+        .code-str {
+            color: #5DE4C7;
+        }
+        /* ==========================================================================
+       TECHNICAL EXPERTISE
+       ========================================================================== */
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .skill-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.75rem;
+            transition: all var(--transition-base);
+        }
+        
+        .skill-card:hover {
+            border-color: var(--border-focus);
+            transform: translateY(-2px);
+        }
+        
+        .skill-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .skill-icon {
+            font-size: 1.25rem;
+        }
+        
+        .skill-category {
+            font-size: 1.0625rem;
+            font-weight: 600;
+        }
+        
+        .skill-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .skill-chip {
+            font-family: var(--font-mono);
+            font-size: 0.78125rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 0.3125rem 0.625rem;
+            border-radius: var(--radius-sm);
+            transition: all var(--transition-fast);
+        }
+        
+        .skill-chip:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        /* ==========================================================================
+       ENGINEERING PRINCIPLES
+       ========================================================================== */
+        
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.25rem;
+        }
+        
+        .principle-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.75rem 1.5rem;
+            position: relative;
+            transition: all var(--transition-base);
+        }
+        
+        .principle-card:hover {
+            border-color: var(--border-focus);
+            transform: translateY(-3px);
+        }
+        
+        .principle-num {
+            font-family: var(--font-mono);
+            font-size: 0.8125rem;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+        
+        .principle-title {
+            font-size: 1.0625rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+        /* ==========================================================================
+       TIMELINE SECTION
+       ========================================================================== */
+        
+        .timeline {
+            position: relative;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 2px;
+            background: var(--border);
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            width: 50%;
+            padding-right: 2.5rem;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-right: 0;
+            padding-left: 2.5rem;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            top: 0;
+            right: -7px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--bg);
+            border: 2px solid var(--accent);
+            z-index: 2;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -7px;
+            right: auto;
+        }
+        
+        .timeline-content {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.25rem 1.5rem;
+        }
+        
+        .timeline-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.25rem;
+        }
+        
+        .timeline-subtitle {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+        /* ==========================================================================
+       GITHUB SECTION
+       ========================================================================== */
+        
+        .github-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .github-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.75rem;
+        }
+        
+        .github-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        /* Mock Graph Styling */
+        
+        .contrib-graph {
+            display: grid;
+            grid-template-columns: repeat(16, 1fr);
+            gap: 4px;
+        }
+        
+        .contrib-cell {
+            aspect-ratio: 1;
+            border-radius: 2px;
+            background: var(--card);
+        }
+        
+        .contrib-cell.lvl-1 {
+            background: rgba(232, 163, 61, 0.2);
+        }
+        
+        .contrib-cell.lvl-2 {
+            background: rgba(232, 163, 61, 0.4);
+        }
+        
+        .contrib-cell.lvl-3 {
+            background: rgba(232, 163, 61, 0.7);
+        }
+        
+        .contrib-cell.lvl-4 {
+            background: rgba(232, 163, 61, 1.0);
+        }
+        
+        .lang-bar {
+            height: 8px;
+            border-radius: 4px;
+            background: var(--card);
+            display: flex;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+        
+        .lang-progress {
+            height: 100%;
+        }
+        
+        .lang-list {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+        
+        .lang-item {
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+        }
+        
+        .lang-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+        /* ==========================================================================
+       CONTACT & FOOTER
+       ========================================================================== */
+        
+        .contact-section {
+            text-align: center;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 5rem 2rem;
+            margin-bottom: 6rem;
+        }
+        
+        .contact-title {
+            font-size: 2.25rem;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-desc {
+            color: var(--muted);
+            max-width: 500px;
+            margin: 0 auto 2.5rem auto;
+            font-size: 1rem;
+        }
+        
+        .contact-links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer {
+            border-top: 1px solid var(--border);
+            padding: 3rem 0;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.875rem;
+        }
+        
+        .footer-role {
+            font-family: var(--font-mono);
+            color: var(--text);
+            font-size: 0.9375rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-text {
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 0.8125rem;
+        }
+        /* ==========================================================================
+       RESPONSIVE DESIGN
+       ========================================================================== */
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1.25rem;
+            }
+            .section-padding {
+                padding: 4.5rem 0;
+            }
+            .hero-title {
+                font-size: 2.25rem;
+            }
+            .nav-links {
+                display: none;
+            }
+            .timeline::before {
+                left: 20px;
+            }
+            .timeline-item {
+                width: 100%;
+                padding-left: 3rem;
+                padding-right: 0;
+            }
+            .timeline-item:nth-child(even) {
+                left: 0;
+                padding-left: 3rem;
+            }
+            .timeline-dot {
+                left: 14px !important;
+                right: auto;
+            }
+            .about-card {
+                padding: 2rem 1.5rem;
+            }
+            .system-card {
+                padding: 1.5rem;
+            }
+        }
+        /* Reveal Animation Utility Class */
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container nav-container">
+            <a href="#" class="nav-logo">
+                <span class="nav-logo-dot"></span> Ajay Sah
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#architecture" class="nav-link">Architecture</a></li>
+                <li><a href="#systems" class="nav-link">Systems</a></li>
+                <li><a href="#expertise" class="nav-link">Expertise</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero & Identity Graph Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+
+                <!-- Animated Identity Graph -->
+                <div class="graph-container">
+                    <svg class="graph-svg" viewBox="0 0 700 420">
+            <!-- Dynamic Connection Lines -->
+            <line x1="350" y1="210" x2="160" y2="80" class="graph-line graph-line-active" />
+            <line x1="350" y1="210" x2="540" y2="80" class="graph-line graph-line-active" />
+            <line x1="350" y1="210" x2="160" y2="340" class="graph-line graph-line-active" />
+            <line x1="350" y1="210" x2="540" y2="340" class="graph-line graph-line-active" />
+          </svg>
+
+                    <!-- Central Profile Node -->
+                    <div class="node node-center">
+                        <div class="avatar-wrapper">
+                            <div class="avatar-img">AS</div>
+                        </div>
+                    </div>
+
+                    <!-- Connected Nodes -->
+                    <a href="https://www.linkedin.com/in/ajaysah-ai" target="_blank" rel="noopener" class="node node-satellite node-li" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                    </a>
+
+                    <a href="https://github.com/ajaysah-ai" target="_blank" rel="noopener" class="node node-satellite node-gh" aria-label="GitHub">
+                        <svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+                    </a>
+
+                    <a href="https://huggingface.co/ajaysah-ai" target="_blank" rel="noopener" class="node node-satellite node-hf" aria-label="Hugging Face">
+                        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-10 10c0 5.52 4.48 10 10 10s10-4.48 10-10A10 10 0 0 0 12 2zm-3 7a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm6 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm-6 6.5c0-.83 1.34-1.5 3-1.5s3 .67 3 1.5S13.66 17 12 17s-3-.67-3-1.5z"/></svg>
+                    </a>
+
+                    <a href="https://x.com/ajaysah_ai" target="_blank" rel="noopener" class="node node-satellite node-x" aria-label="X (Twitter)">
+                        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                </div>
+
+                <!-- Identity Header -->
+                <div class="hero-content">
+                    <h1 class="hero-title">Ajay Sah</h1>
+                    <div class="hero-subtitle-tag">Generative AI Systems Engineer</div>
+                    <p class="hero-description">
+                        Designing production-grade intelligent systems using Agentic AI, Multi-Agent Orchestration, LLM Infrastructure, and AI Automation.
+                    </p>
+
+                    <div style="margin-top: 1rem;">
+                        <div class="location-badge">
+                            <span class="location-dot"></span> Jamshedpur, Jharkhand, India
+                        </div>
+                    </div>
+
+                    <div class="hero-cta">
+                        <a href="#contact" class="btn btn-primary">Download Resume</a>
+                        <a href="#systems" class="btn btn-secondary">View Projects</a>
+                        <a href="https://github.com/ajaysah-ai" target="_blank" rel="noopener" class="btn btn-secondary">GitHub</a>
+                        <a href="https://www.linkedin.com/in/ajaysah-ai" target="_blank" rel="noopener" class="btn btn-secondary">LinkedIn</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- About Me & Current Focus -->
+    <section id="about" class="section-padding">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-tag">OVERVIEW</div>
+                <h2 class="section-title">About & Current Focus</h2>
+            </div>
+
+            <div class="about-card reveal">
+                <div class="about-text">
+                    <p>
+                        I'm a Generative AI Systems Engineer focused on building reliable AI systems that solve real-world problems.
+                    </p>
+                    <p>
+                        My interests include Agentic AI, Multi-Agent Systems, AI Safety, LLM Infrastructure, and autonomous intelligent systems. I enjoy designing architectures where reasoning, planning, retrieval, and human oversight work together.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Current Focus Cards -->
+            <div class="focus-grid reveal">
+                <div class="focus-card">
+                    <span class="focus-icon">🤖</span>
+                    <span class="focus-title">Agentic AI</span>
+                </div>
+                <div class="focus-card">
+                    <span class="focus-icon">🧠</span>
+                    <span class="focus-title">Multi-Agent Systems</span>
+                </div>
+                <div class="focus-card">
+                    <span class="focus-icon">🛡</span>
+                    <span class="focus-title">AI Safety</span>
+                </div>
+                <div class="focus-card">
+                    <span class="focus-icon">⚙</span>
+                    <span class="focus-title">LLM Infrastructure</span>
+                </div>
+                <div class="focus-card">
+                    <span class="focus-icon">🚀</span>
+                    <span class="focus-title">Intelligent Automation</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Architecture Diagram Section -->
+    <section id="architecture" class="section-padding" style="background: rgba(22, 27, 46, 0.3);">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-tag">SYSTEM ARCHITECTURE</div>
+                <h2 class="section-title">Agentic Execution Pipeline</h2>
+            </div>
+
+            <div class="architecture-wrapper reveal">
+                <svg class="arch-diagram" viewBox="0 0 1000 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Connection Path -->
+          <path d="M 60 60 L 940 60" stroke="#2A3152" stroke-width="2" stroke-dasharray="4 4"/>
+
+          <!-- Nodes -->
+          <!-- User -->
+          <g transform="translate(20, 35)">
+            <rect width="80" height="50" rx="6" fill="#1E2540" stroke="#2A3152"/>
+            <text x="40" y="30" fill="#E7E9F2" font-family="IBM Plex Mono" font-size="12" text-anchor="middle">User</text>
+          </g>
+
+          <!-- Planner -->
+          <g transform="translate(130, 35)">
+            <rect width="80" height="50" rx="6" fill="#1E2540" stroke="#2A3152"/>
+            <text x="40" y="30" fill="#E7E9F2" font-family="IBM Plex Mono" font-size="12" text-anchor="middle">Planner</text>
+          </g>
+
+          <!-- Router -->
+          <g transform="translate(240, 35)">
+            <rect width="80" height="50" rx="6" fill="#1E2540" stroke="#2A3152"/>
+            <text x="40" y="30" fill="#E7E9F2" font-family="IBM Plex Mono" font-size="12" text-anchor="middle">Router</text>
+          </g>
+
+          <!-- Hybrid RAG -->
+          <g transform="translate(350, 35)">
+            <rect width="100" height="50" rx="6" fill="#1E2540" stroke="#E8A33D"/>
+            <text x="50" y="30" fill="#E8A33D" font-family="IBM Plex Mono" font-size="12" font-weight="600" text-anchor="middle">Hybrid RAG</text>
+          </g>
+
+          <!-- MCP -->
+          <g transform="translate(480, 35)">
+            <rect width="80" height="50" rx="6" fill="#1E2540" stroke="#2A3152"/>
+            <text x="40" y="30" fill="#E7E9F2" font-family="IBM Plex Mono" font-size="12" text-anchor="middle">MCP</text>
+          </g>
+
+          <!-- LLM -->
+          <g transform="translate(590, 35)">
+            <rect width="80" height="50" rx="6" fill="#1E2540" stroke="#2A3152"/>
+            <text x="40" y="30" fill="#E7E9F2" font-family="IBM Plex Mono" font-size="12" text-anchor="middle">LLM</text>
+          </g>
+
+          <!-- Human Approval -->
+          <g transform="translate(700, 35)">
+            <rect width="120" height="50" rx="6" fill="#1E2540" stroke="#2A3152"/>
+            <text x="60" y="30" fill="#E7E9F2" font-family="IBM Plex Mono" font-size="11" text-anchor="middle">Human Approval</text>
+          </g>
+
+          <!-- Execution -->
+          <g transform="translate(850, 35)">
+            <rect width="90" height="50" rx="6" fill="#1E2540" stroke="#2A3152"/>
+            <text x="45" y="30" fill="#E7E9F2" font-family="IBM Plex Mono" font-size="12" text-anchor="middle">Execution</text>
+          </g>
+        </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Systems -->
+    <section id="systems" class="section-padding">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-tag">ENGINEERING PORTFOLIO</div>
+                <h2 class="section-title">Featured Systems</h2>
+            </div>
+
+            <div class="systems-grid">
+
+                <!-- System 2: GitHub Automation Agent -->
+                <div class="system-card reveal">
+                    <div>
+                        <h3 class="system-title">GitHub Automation Agent</h3>
+                        <p class="system-desc">
+                            Production-grade multi-agent GitHub assistant using LangGraph, Hybrid RAG, MCP, Runtime Context, Human Approval, FastAPI, Docker and React.
+                        </p>
+
+                        <div class="system-highlights">
+                            <div class="system-highlights-title">Architecture Highlights</div>
+                            <ul class="system-highlights-list">
+                                <li>Stateful multi-agent execution graphs using LangGraph</li>
+                                <li>Strict Human-in-the-Loop verification state before git commits</li>
+                                <li>Model Context Protocol (MCP) tool integration</li>
+                            </ul>
+                        </div>
+
+                        <div class="tech-stack">
+                            <span class="tech-pill">LangGraph</span>
+                            <span class="tech-pill">MCP</span>
+                            <span class="tech-pill">Hybrid RAG</span>
+                            <span class="tech-pill">FastAPI</span>
+                            <span class="tech-pill">Docker</span>
+                        </div>
+
+                        <div class="system-actions">
+                            <a href="https://github.com/ajaysah-ai/GitHub_Autonomous_Agent" class="btn btn-secondary btn-sm">GitHub</a>
+                            <a href="https://git-hub-autonomous-agent.vercel.app/login" class="btn btn-primary btn-sm">Live Demo</a>
+                        </div>
+                    </div>
+
+                    <div class="system-preview-box">
+                        <div class="code-snippet">
+                            workflow = StateGraph(AgentState)<br> workflow.add_node(
+                            <span class="code-str">"planner"</span>, plan_step)<br> workflow.add_node(
+                            <span class="code-str">"human_gate"</span>, human_approval)<br> workflow.add_edge(
+                            <span class="code-str">"planner"</span>, <span class="code-str">"human_gate"</span>)<br> app = workflow.compile()
+                        </div>
+                    </div>
+                </div>
+
+                <!-- System 3: AI-First CRM -->
+                <div class="system-card reveal">
+                    <div>
+                        <h3 class="system-title">AI-First CRM</h3>
+                        <p class="system-desc">
+                            Healthcare interaction platform powered by LangGraph workflows with AI-assisted documentation and approval.
+                        </p>
+
+                        <div class="system-highlights">
+                            <div class="system-highlights-title">Architecture Highlights</div>
+                            <ul class="system-highlights-list">
+                                <li>Real-time medical conversation transcription & extraction</li>
+                                <li>HIPAA-aligned local vector storage with retrieval controls</li>
+                                <li>Automated patient clinical note synthesis</li>
+                            </ul>
+                        </div>
+
+                        <div class="tech-stack">
+                            <span class="tech-pill">LangGraph</span>
+                            <span class="tech-pill">Python</span>
+                            <span class="tech-pill">PostgreSQL</span>
+                            <span class="tech-pill">React</span>
+                        </div>
+
+                        <div class="system-actions">
+                            <a href="https://github.com/ajaysah-ai/AI-First-CRM-HCP" class="btn btn-secondary btn-sm">GitHub</a>
+                            <!-- <a href="#" class="btn btn-primary btn-sm">Live Demo</a> -->
+                        </div>
+                    </div>
+
+                    <div class="system-preview-box">
+                        <div class="code-snippet">
+                            <span class="code-keyword">struct</span> ClinicalRecord {<br> &nbsp;&nbsp;patient_id: <span class="code-str">UUID</span>,<br> &nbsp;&nbsp;transcript: <span class="code-str">String</span>,<br> &nbsp;&nbsp;verified_by_human:
+                            <span class="code-keyword">bool</span>,<br> }
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Technical Expertise -->
+    <section id="expertise" class="section-padding" style="background: rgba(22, 27, 46, 0.3);">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-tag">CAPABILITIES</div>
+                <h2 class="section-title">Core Technical Expertise</h2>
+            </div>
+
+            <div class="skills-grid">
+
+                <!-- Category 1 -->
+                <div class="skill-card reveal">
+                    <div class="skill-header">
+                        <span class="skill-icon">🤖</span>
+                        <h3 class="skill-category">Generative AI & LLMs</h3>
+                    </div>
+                    <div class="skill-chips">
+                        <span class="skill-chip">LLM Applications</span>
+                        <span class="skill-chip">Prompt Engineering</span>
+                        <span class="skill-chip">RAG</span>
+                        <span class="skill-chip">LangChain</span>
+                        <span class="skill-chip">LangGraph</span>
+                        <span class="skill-chip">Model Context Protocol</span>
+                        <span class="skill-chip">Hugging Face</span>
+                        <span class="skill-chip">Groq API</span>
+                        <span class="skill-chip">Google AI API</span>
+                    </div>
+                </div>
+
+                <!-- Category 2 -->
+                <div class="skill-card reveal">
+                    <div class="skill-header">
+                        <span class="skill-icon">🧠</span>
+                        <h3 class="skill-category">AI Automation</h3>
+                    </div>
+                    <div class="skill-chips">
+                        <span class="skill-chip">Playwright</span>
+                        <span class="skill-chip">PyAutoGUI</span>
+                        <span class="skill-chip">pywinauto</span>
+                        <span class="skill-chip">OpenCV</span>
+                        <span class="skill-chip">Pytesseract</span>
+                        <span class="skill-chip">mss</span>
+                    </div>
+                </div>
+
+                <!-- Category 3 -->
+                <div class="skill-card reveal">
+                    <div class="skill-header">
+                        <span class="skill-icon">⚙</span>
+                        <h3 class="skill-category">Backend & APIs</h3>
+                    </div>
+                    <div class="skill-chips">
+                        <span class="skill-chip">FastAPI</span>
+                        <span class="skill-chip">REST APIs</span>
+                        <span class="skill-chip">JWT Authentication</span>
+                    </div>
+                </div>
+
+                <!-- Category 4 -->
+                <div class="skill-card reveal">
+                    <div class="skill-header">
+                        <span class="skill-icon">🗄</span>
+                        <h3 class="skill-category">Databases & Vector Stores</h3>
+                    </div>
+                    <div class="skill-chips">
+                        <span class="skill-chip">PostgreSQL</span>
+                        <span class="skill-chip">MySQL</span>
+                        <span class="skill-chip">FAISS</span>
+                        <span class="skill-chip">Qdrant</span>
+                    </div>
+                </div>
+
+                <!-- Category 5 -->
+                <div class="skill-card reveal">
+                    <div class="skill-header">
+                        <span class="skill-icon">💻</span>
+                        <h3 class="skill-category">Programming Languages</h3>
+                    </div>
+                    <div class="skill-chips">
+                        <span class="skill-chip">Python</span>
+                        <span class="skill-chip">SQL</span>
+                        <span class="skill-chip">JavaScript</span>
+                    </div>
+                </div>
+
+                <!-- Category 6 -->
+                <div class="skill-card reveal">
+                    <div class="skill-header">
+                        <span class="skill-icon">🎨</span>
+                        <h3 class="skill-category">Frontend</h3>
+                    </div>
+                    <div class="skill-chips">
+                        <span class="skill-chip">React</span>
+                        <span class="skill-chip">Redux Toolkit</span>
+                        <span class="skill-chip">HTML</span>
+                        <span class="skill-chip">CSS</span>
+                        <span class="skill-chip">JavaScript</span>
+                    </div>
+                </div>
+
+                <!-- Category 7 -->
+                <div class="skill-card reveal">
+                    <div class="skill-header">
+                        <span class="skill-icon">📊</span>
+                        <h3 class="skill-category">Machine Learning & Deep Learning</h3>
+                    </div>
+                    <div class="skill-chips">
+                        <span class="skill-chip">NumPy</span>
+                        <span class="skill-chip">Pandas</span>
+                        <span class="skill-chip">Scikit-learn</span>
+                        <span class="skill-chip">TensorFlow</span>
+                        <span class="skill-chip">PyTorch</span>
+                        <span class="skill-chip">EDA</span>
+                        <span class="skill-chip">Regression</span>
+                        <span class="skill-chip">Classification</span>
+                        <span class="skill-chip">Clustering</span>
+                        <span class="skill-chip">Feature Engineering</span>
+                        <span class="skill-chip">Hyperparameter Tuning</span>
+                        <span class="skill-chip">Model Evaluation</span>
+                    </div>
+                </div>
+
+                <!-- Category 8 -->
+                <div class="skill-card reveal">
+                    <div class="skill-header">
+                        <span class="skill-icon">🧩</span>
+                        <h3 class="skill-category">Transformer Fundamentals</h3>
+                    </div>
+                    <div class="skill-chips">
+                        <span class="skill-chip">Transformer Architecture</span>
+                        <span class="skill-chip">Implemented Core Components from Scratch</span>
+                    </div>
+                </div>
+
+                <!-- Category 9 -->
+                <div class="skill-card reveal">
+                    <div class="skill-header">
+                        <span class="skill-icon">🐳</span>
+                        <h3 class="skill-category">DevOps & Tools</h3>
+                    </div>
+                    <div class="skill-chips">
+                        <span class="skill-chip">Docker</span>
+                        <span class="skill-chip">Git</span>
+                        <span class="skill-chip">GitHub</span>
+                        <span class="skill-chip">Linux</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Engineering Principles -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-tag">PHILOSOPHY</div>
+                <h2 class="section-title">Engineering Principles</h2>
+            </div>
+
+            <div class="principles-grid reveal">
+                <div class="principle-card">
+                    <span class="principle-num">01</span>
+                    <div class="principle-title">Build Systems, Not Features</div>
+                </div>
+                <div class="principle-card">
+                    <span class="principle-num">02</span>
+                    <div class="principle-title">Safety Before Capability</div>
+                </div>
+                <div class="principle-card">
+                    <span class="principle-num">03</span>
+                    <div class="principle-title">Solve Real-World Problems</div>
+                </div>
+                <div class="principle-card">
+                    <span class="principle-num">04</span>
+                    <div class="principle-title">Continuous Learning</div>
+                </div>
+                <div class="principle-card">
+                    <span class="principle-num">05</span>
+                    <div class="principle-title">Human-in-the-Loop by Design</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="section-padding" style="background: rgba(22, 27, 46, 0.3);">
+        <div class="container">
+            <div class="section-header reveal" style="text-align: center;">
+                <div class="section-tag">EVOLUTION</div>
+                <h2 class="section-title">Systems Progression</h2>
+            </div>
+
+            <div class="timeline reveal">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Transformer Architecture</div>
+                        <div class="timeline-subtitle">From-scratch implementation of core attention modules.</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">GitHub Automation Agent</div>
+                        <div class="timeline-subtitle">Multi-agent LangGraph workflow with MCP integration.</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">AI First CRM</div>
+                        <div class="timeline-subtitle">Healthcare record processing pipeline with human approval gates.</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Product Intelligence AI</div>
+                        <div class="timeline-subtitle">Autonomous web intelligence engine.</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Future Intelligent Systems</div>
+                        <div class="timeline-subtitle">Next-gen autonomous multi-agent infrastructure.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GitHub Activity -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-tag">TELEMETRY</div>
+                <h2 class="section-title">GitHub System Activity</h2>
+            </div>
+
+            <div class="github-grid reveal">
+
+                <!-- Contribution Graph -->
+                <div class="github-card">
+                    <div class="github-title">Contribution Matrix</div>
+                    <div class="contrib-graph">
+                        <!-- Simulated Cells -->
+                        <div class="contrib-cell lvl-1"></div>
+                        <div class="contrib-cell lvl-3"></div>
+                        <div class="contrib-cell lvl-2"></div>
+                        <div class="contrib-cell lvl-4"></div>
+                        <div class="contrib-cell lvl-1"></div>
+                        <div class="contrib-cell lvl-0"></div>
+                        <div class="contrib-cell lvl-3"></div>
+                        <div class="contrib-cell lvl-2"></div>
+                        <div class="contrib-cell lvl-4"></div>
+                        <div class="contrib-cell lvl-1"></div>
+                        <div class="contrib-cell lvl-2"></div>
+                        <div class="contrib-cell lvl-3"></div>
+                        <div class="contrib-cell lvl-4"></div>
+                        <div class="contrib-cell lvl-2"></div>
+                        <div class="contrib-cell lvl-1"></div>
+                        <div class="contrib-cell lvl-3"></div>
+                        <!-- Repeat Pattern -->
+                        <div class="contrib-cell lvl-2"></div>
+                        <div class="contrib-cell lvl-4"></div>
+                        <div class="contrib-cell lvl-1"></div>
+                        <div class="contrib-cell lvl-3"></div>
+                        <div class="contrib-cell lvl-2"></div>
+                        <div class="contrib-cell lvl-4"></div>
+                        <div class="contrib-cell lvl-0"></div>
+                        <div class="contrib-cell lvl-1"></div>
+                        <div class="contrib-cell lvl-3"></div>
+                        <div class="contrib-cell lvl-2"></div>
+                        <div class="contrib-cell lvl-4"></div>
+                        <div class="contrib-cell lvl-1"></div>
+                        <div class="contrib-cell lvl-2"></div>
+                        <div class="contrib-cell lvl-3"></div>
+                        <div class="contrib-cell lvl-4"></div>
+                        <div class="contrib-cell lvl-1"></div>
+                    </div>
+                </div>
+
+                <!-- Most Used Languages -->
+                <div class="github-card">
+                    <div class="github-title">Language Distribution</div>
+                    <div class="lang-bar">
+                        <div class="lang-progress" style="width: 65%; background: #E8A33D;"></div>
+                        <div class="lang-progress" style="width: 20%; background: #3572A5;"></div>
+                        <div class="lang-progress" style="width: 15%; background: #F1E05A;"></div>
+                    </div>
+                    <div class="lang-list">
+                        <div class="lang-item"><span class="lang-dot" style="background: #E8A33D;"></span> Python (65%)</div>
+                        <div class="lang-item"><span class="lang-dot" style="background: #3572A5;"></span> TypeScript (20%)</div>
+                        <div class="lang-item"><span class="lang-dot" style="background: #F1E05A;"></span> JS/SQL (15%)</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="container">
+        <div class="contact-section reveal">
+            <h2 class="contact-title">Initiate Contact</h2>
+            <p class="contact-desc">
+                Open to discussions regarding Generative AI Engineering, Agentic Systems, and Advanced AI Infrastructure roles.
+            </p>
+
+            <div class="contact-links">
+                <a href="mailto:ajay.sah.aieng@gmail.com" class="btn btn-primary">Email</a>
+                <a href="https://www.linkedin.com/in/ajaysah-ai" target="_blank" rel="noopener" class="btn btn-secondary">LinkedIn</a>
+                <a href="https://github.com/ajaysah-ai" target="_blank" rel="noopener" class="btn btn-secondary">GitHub</a>
+                <a href="https://huggingface.co/ajaysah-ai" target="_blank" rel="noopener" class="btn btn-secondary">Hugging Face</a>
+                <a href="https://x.com/ajaysah_ai" target="_blank" rel="noopener" class="btn btn-secondary">X</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-role">Generative AI Systems Engineer</div>
+            <p class="footer-text">
+                Interested in Agentic AI, AI Safety, LLM Infrastructure, Intelligent Systems, and Autonomous Machines.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Vanilla JavaScript -->
+    <script>
+        // Scroll Reveal Effect
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        });
+    </script>
+
+</body>
+
+</html>
