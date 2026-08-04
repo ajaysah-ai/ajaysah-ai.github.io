@@ -1120,6 +1120,13 @@
             opacity: 1;
             transform: translateY(0);
         }
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover; /* Ensures image covers the full circle without distorting */
+            display: block;
+        }
     </style>
 </head>
 
@@ -1159,7 +1166,7 @@
                     <!-- Central Profile Node -->
                     <div class="node node-center">
                         <div class="avatar-wrapper">
-                            <div class="avatar-img">AS</div>
+                            <img src="preview.png" alt="Ajay Sah" class="avatar-img" />
                         </div>
                     </div>
 
